@@ -7,6 +7,7 @@
 namespace types
 {
     typedef std::vector<std::string> ListString;
+    typedef std::vector<char> ListChar;
 }
 
 #endif
