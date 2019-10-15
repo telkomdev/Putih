@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "Type.h"
 
 #include <arpa/inet.h>
 #include <netdb.h>
@@ -59,16 +60,16 @@ namespace putih
             return -1;
         }
 
-        std::string reply(15, ' ');
+        types::ListChar reply(1024);
         
-        auto bytes_receive = recv(sock_FD, &reply.front(), reply.size(), 0);
+        auto bytes_receive = recv(sock_FD, reply.data(), reply.size(), 0);
         if (bytes_receive == -1) 
         {
             std::cerr << "error receiving message" << std::endl;
             return -1;
         }
 
-        std::cout << "receiving : " << reply << std::endl;
+        std::cout << "receiving : " << reply.data() << std::endl;
         close(sock_FD);
         freeaddrinfo(p);
 
