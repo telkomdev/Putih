@@ -8,6 +8,7 @@ include_directories(${PROJECT_SOURCE_DIR}/src/include)
 # Add definition for library
 add_library(Lib
     src/ArgParser.cc
+    src/Connection.cc
 )
 
 # Add definition for the cmake-tutorial binary
