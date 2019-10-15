@@ -3,7 +3,7 @@
 
 #include "Type.h"
 
-namespace argparser
+namespace putih
 {
     int ParseArg(int argc, char* args[], types::ListString* list);
 }

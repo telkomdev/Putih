@@ -7,7 +7,7 @@
 int main(int argc, char* argv[])
 {
     types::ListString args;
-    int res = argparser::ParseArg(argc, argv, &args);
+    int res = putih::ParseArg(argc, argv, &args);
     if (res < 0) 
     {
         std::cerr << "required 2 arguments" << std::endl;
@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
     const char* p_host = host.c_str();
     const char* p_port = port.c_str();
 
-    int conn_res = putih_conn::ConnectRedis(p_host, p_port);
+    int conn_res = putih::ConnectRedis(p_host, p_port);
     if (conn_res < 0) 
     {
         return -1;

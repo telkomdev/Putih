@@ -7,7 +7,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-namespace putih_conn
+namespace putih
 {
     int ConnectRedis(const char* host, const char* port)
     {
