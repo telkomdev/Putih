@@ -2,6 +2,7 @@
 #include <string>
 #include "ArgParser.h"
 #include "Type.h"
+#include "Connection.h"
 
 int main(int argc, char* argv[])
 {
@@ -9,21 +10,28 @@ int main(int argc, char* argv[])
     int res = argparser::ParseArg(argc, argv, &args);
     if (res < 0) 
     {
-        std::cout << "required 2 arguments" << std::endl;
+        std::cerr << "required 2 arguments" << std::endl;
         return -1;
     }
 
-    for (std::string arg : args)
-    {
-        std::cout << " " << arg << std::endl;
-    }
+    // std::string input;
 
-    std::string input;
+    // while (input != "exit")
+    // {
+    //     std::cin >> input;
+    //     std::cout << input << std::endl;
+    // }
 
-    while (input != "exit")
+    std::string host = args.at(1);
+    std::string port = args.at(2);
+
+    const char* p_host = host.c_str();
+    const char* p_port = port.c_str();
+
+    int conn_res = putih_conn::ConnectRedis(p_host, p_port);
+    if (conn_res < 0) 
     {
-        std::cin >> input;
-        std::cout << input << std::endl;
+        return -1;
     }
 
     return 0;
