@@ -8,6 +8,7 @@ namespace types
 {
     typedef std::vector<std::string> ListString;
     typedef std::vector<char> ListChar;
+    typedef unsigned char Byte;
 }
 
 #endif
