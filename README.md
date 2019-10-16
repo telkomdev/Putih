@@ -27,3 +27,9 @@ Run `make`
 ```shell
 $ make
 ```
+
+### Usage
+After building process above, we can use produced binary in `build` folder to connect with `redis server`
+```shell
+$ ./putih localhost 6379
+```
