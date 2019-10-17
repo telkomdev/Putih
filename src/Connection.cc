@@ -11,7 +11,7 @@
 #include <unistd.h>
 
 template<size_t SM, size_t SR>
-int SendMessage(int sock_FD, std::array<types::Byte, SM>& msg, std::array<types::Byte, SR>* reply)
+int SendCommand(int sock_FD, std::array<types::Byte, SM>& msg, std::array<types::Byte, SR>* reply)
 {
     // get message
     std::string msg_str;
@@ -91,7 +91,7 @@ namespace putih
         std::array<types::Byte, 14> msg;
         std::array<types::Byte, 20> reply;
 
-        int sent = SendMessage(sock_FD, msg, &reply);
+        int sent = SendCommand(sock_FD, msg, &reply);
         if (sent == -1) 
         {
             std::cerr << "error sending command" << std::endl;
@@ -104,5 +104,5 @@ namespace putih
 
         return 0;
     }
-    
+
 }
