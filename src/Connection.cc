@@ -10,6 +10,38 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+template<size_t SM, size_t SR>
+int SendMessage(int sock_FD, std::array<types::Byte, SM>& msg, std::array<types::Byte, SR>* reply)
+{
+    // get message
+    std::string msg_str;
+    getline(std::cin, msg_str);
+
+    // TODO
+    // add CR and LF for line termintation
+    std::ostringstream ss;
+    ss << msg_str << "\r\n";
+
+    memcpy(msg.data(), ss.str().c_str(), msg.size());
+
+    int sent = send(sock_FD, msg.data(), msg.size(), 0);
+    if (sent == -1) 
+    {
+        std::cerr << "error send message" << std::endl;
+        return -1;
+    }
+    
+    auto bytes_receive = recv(sock_FD, reply->data(), reply->size(), 0);
+    if (bytes_receive == -1) 
+    {
+        std::cerr << "error receiving message" << std::endl;
+        return -1;
+    }
+
+    return 0;
+
+}
+
 namespace putih
 {
     int ConnectRedis(const char* host, const char* port)
@@ -52,41 +84,17 @@ namespace putih
         }
 
         // TODO
-        //const char* MSG = "AUTH devpass\n";
 
         // carriage return and line feed
-        std::array<types::Byte, 2> CR_LF = {13, 10};
+        //std::array<types::Byte, 2> CR_LF = {13, 10};
 
-        //std::array<types::Byte, 14> msg = {65, 85, 84, 72, 32, 100, 101, 118, 112, 97, 115, 115, 13, 10};
         std::array<types::Byte, 14> msg;
-        
+        std::array<types::Byte, 20> reply;
 
-        // get message
-        std::string msg_str;
-        getline(std::cin, msg_str);
-
-        // TODO
-        // add CR and LF for line termintation
-        std::ostringstream ss;
-        ss << msg_str << "\r\n";
-
-        memcpy(msg.data(), ss.str().c_str(), msg.size());
-
-        std::cout << "*" << msg.size() << std::endl;
-
-        int sent = send(sock_FD, msg.data(), msg.size(), 0);
+        int sent = SendMessage(sock_FD, msg, &reply);
         if (sent == -1) 
         {
-            std::cerr << "error send message" << std::endl;
-            return -1;
-        }
-
-        std::array<types::Byte, 20> reply;
-        
-        auto bytes_receive = recv(sock_FD, reply.data(), reply.size(), 0);
-        if (bytes_receive == -1) 
-        {
-            std::cerr << "error receiving message" << std::endl;
+            std::cerr << "error sending command" << std::endl;
             return -1;
         }
 
@@ -96,4 +104,5 @@ namespace putih
 
         return 0;
     }
+    
 }
