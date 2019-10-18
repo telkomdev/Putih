@@ -22,7 +22,7 @@ namespace putih
             getline(std::cin, msg_str);
 
             // TODO
-            // add CR and LF for line termintation
+            // add CR and LF for line termination
             std::ostringstream ss;
             ss << msg_str << "\r\n";
 
