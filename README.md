@@ -23,6 +23,11 @@ Create `build` folder
 $ mkdir build
 ```
 
+Goto `build` folder
+```shell
+$ cd build
+```
+
 Run `cmake`
 ```shell
 $ cmake ..
