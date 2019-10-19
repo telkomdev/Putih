@@ -14,10 +14,13 @@ namespace putih
 {
     namespace
     {
-        template<size_t SM, size_t SR>
-        int HandleCommand(int sock_FD, std::array<types::Byte, SM>& msg, std::array<types::Byte, SR>* reply)
+        template<size_t S>
+        int HandleCommand(int sock_FD, std::array<types::Byte, S>* reply)
         {
-            // get message
+
+            std::array<types::Byte, 14> msg;
+
+            // get message from stdin
             std::string msg_str;
             getline(std::cin, msg_str);
 
@@ -49,6 +52,18 @@ namespace putih
 
     int ConnectRedis(const char* host, const char* port)
     {
+        if (host == nullptr)
+        {
+            std::cerr << "host cannot be empty" << std::endl;
+            return -1;
+        }
+
+        if (port == nullptr)
+        {
+            std::cerr << "port cannot be empty" << std::endl;
+            return -1;
+        }
+
         addrinfo hints, *p;
         memset(&hints, 0, sizeof(hints));
 
@@ -91,10 +106,9 @@ namespace putih
         // carriage return and line feed
         //std::array<types::Byte, 2> CR_LF = {13, 10};
 
-        std::array<types::Byte, 14> msg;
         std::array<types::Byte, 30> reply;
 
-        int sent = HandleCommand(sock_FD, msg, &reply);
+        int sent = HandleCommand(sock_FD, &reply);
         if (sent == -1) 
         {
             std::cerr << "error sending command" << std::endl;
