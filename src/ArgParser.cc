@@ -4,7 +4,7 @@
 
 namespace putih
 {
-    int ParseArg(int argc, char* args[], types::ListString* list)
+    int ParseArg(int& argc, char* args[], types::ListString* list)
     {
         if (argc < 3) 
         {
