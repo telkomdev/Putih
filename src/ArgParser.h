@@ -4,6 +4,8 @@
 namespace putih
 {
 
+    #define VERSION "0.0.0";
+
     struct Argument
     {
         char* appName;
@@ -14,6 +16,8 @@ namespace putih
     };
     
 
+    void ShowHelp(void);
+    void ShowVersion(void);
     int ParseArg(int& argc, char* args[], Argument* argument);
 }
 
