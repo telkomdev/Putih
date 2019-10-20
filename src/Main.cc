@@ -8,9 +8,8 @@ int main(int argc, char* argv[])
 {
     putih::Argument args;
     int res = putih::ParseArg(argc, argv, &args);
-    if (res < 0) 
+    if (res != 0) 
     {
-        std::cerr << "required 2 arguments" << std::endl;
         return -1;
     }
 
