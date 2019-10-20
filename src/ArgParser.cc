@@ -4,17 +4,16 @@
 
 namespace putih
 {
-    int ParseArg(int& argc, char* args[], types::ListString* list)
+    int ParseArg(int& argc, char* args[], Argument* argument)
     {
         if (argc < 3) 
         {
             return -1;
         }
 
-        for (int i = 0; i < argc; i++) 
-        {
-            list->push_back(args[i]);
-        }
+        argument->appName = args[0];
+        argument->host = args[1];
+        argument->port = args[2];
 
         return 0;
     }

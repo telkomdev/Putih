@@ -1,11 +1,20 @@
 #ifndef ARG_PARSER_H
 #define ARG_PARSER_H
 
-#include "Type.h"
-
 namespace putih
 {
-    int ParseArg(int& argc, char* args[], types::ListString* list);
+
+    struct Argument
+    {
+        char* appName;
+        char* host;
+        char* port;
+        bool isShowVersion;
+        bool isShowHelp;
+    };
+    
+
+    int ParseArg(int& argc, char* args[], Argument* argument);
 }
 
 #endif
