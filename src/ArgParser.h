@@ -6,19 +6,23 @@ namespace putih
 
     #define VERSION "0.0.0";
 
-    struct Argument
+    class Argument
     {
-        char* appName;
-        char* host;
-        char* port;
-        bool isShowVersion;
-        bool isShowHelp;
+        private:
+            char* appName;
+            char* host;
+            char* port;
+            bool isShowVersion;
+            bool isShowHelp;
+        public:
+            int ParseArg(int& argc, char* args[]);
+            char* GetAppName() const {return appName;}
+            char* GetHost() const {return host;}
+            char* GetPort() const {return port;}
+            static void ShowHelp(void);
+            static void ShowVersion(void);
     };
     
-
-    void ShowHelp(void);
-    void ShowVersion(void);
-    int ParseArg(int& argc, char* args[], Argument* argument);
 }
 
 #endif

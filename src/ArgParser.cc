@@ -4,7 +4,7 @@
 
 namespace putih
 {
-    void ShowHelp(void)
+    void Argument::ShowHelp(void)
     {
         std::cerr << "Usage: putih [options]\n"
                 << "\t--help (show help)\n"
@@ -12,13 +12,13 @@ namespace putih
                 << std::endl;
     }
 
-    void ShowVersion(void)
+    void Argument::ShowVersion(void)
     {
         std::cout << "putih version " << VERSION;
         std::cout << std::endl;
     }
 
-    int ParseArg(int& argc, char* args[], Argument* argument)
+    int Argument::ParseArg(int& argc, char* args[])
     {
         if (argc == 1) 
         {
@@ -40,9 +40,9 @@ namespace putih
             }
         } else if (argc == 3)
         {
-            argument->appName = args[0];
-            argument->host = args[1];
-            argument->port = args[2];
+            this->appName = args[0];
+            this->host = args[1];
+            this->port = args[2];
             return 0;
         } else
         {
