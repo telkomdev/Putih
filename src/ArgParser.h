@@ -15,7 +15,7 @@ namespace putih
             bool isShowVersion;
             bool isShowHelp;
         public:
-            int ParseArg(int& argc, char* args[]);
+            int ParseArg(const int& argc, char* args[]);
             char* GetAppName() const {return appName;}
             char* GetHost() const {return host;}
             char* GetPort() const {return port;}

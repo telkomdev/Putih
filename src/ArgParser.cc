@@ -18,7 +18,7 @@ namespace putih
         std::cout << std::endl;
     }
 
-    int Argument::ParseArg(int& argc, char* args[])
+    int Argument::ParseArg(const int& argc, char* args[])
     {
         if (argc == 1) 
         {
